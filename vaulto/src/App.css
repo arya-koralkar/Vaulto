@@ -7,8 +7,17 @@ body {
 
 /* Common styles */
 .page-container {
-  width: 90%;
-  margin: 40px auto;
+  min-height: 20vh;              /* full screen height */
+  width: 100%;
+  max-width: 900px;                /* content not too wide */
+  margin: 0 auto;                  /* center horizontally */
+  padding: 40px 24px;
+  color:rgb(208, 212, 218);
+  display: flex;
+  flex-direction: column;
+  align-items: center;             /* center logo + buttons */
+  justify-content: center;         /* center vertically */
+  text-align: center;
 }
 
 .top-bar {
@@ -29,6 +38,14 @@ body {
   font-weight: bold;
 }
 
+.tagline {
+  margin-top: -10px;
+  margin-bottom: 50px;
+  font-size: 26px;
+  color: white;
+  text-align: center;
+}
+
 /* Input styling */
 .input-box {
   width: 100%;
@@ -38,6 +55,8 @@ body {
   border-radius: 16px;
   color: white;
   font-size: 16px;
+  margin-top: 25px;
+  margin-bottom: 10px;
   outline: none;
 }
 
@@ -57,16 +76,21 @@ body {
 
 /* Landing page buttons */
 .landing-btn {
-  width: 85%;
-  padding: 14px;
-  margin-top: 16px;
+  width: 100%;
+  max-width: 880px;                
+  padding: 18px 32px;
+  margin-top: 18px;
+
   border-radius: 40px;
   border: 1px solid #2f2f2f;
+  background: #111111;
+  color: white;
+  
   font-size: 17px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
-  background: #1a1a1a;
+  gap: 12px;
   cursor: pointer;
-  color: white;
+  
 }

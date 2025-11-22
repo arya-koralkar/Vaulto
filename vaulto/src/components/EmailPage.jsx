@@ -17,22 +17,20 @@ export default function EmailPage() {
 
   return (
     <>
-      <div className="top-bar">
-        <div className="page-title">Create account</div>
-      </div>
 
       <div className="page-container">
-        <h2>What's your email?</h2>
+        <h1>Enter your email</h1>
 
         <input
           type="email"
+          placeholder="Email address"
           className="input-box"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
 
         <p style={{ color: "#b3b3b3", marginTop: "10px" }}>
-          You’ll need to confirm this email later.
+          You’ll need to verify this email later.
         </p>
 
         <button className="next-btn" onClick={handleNext}>Next</button>

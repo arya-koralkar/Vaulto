@@ -29,36 +29,39 @@ export default function SignupUsername() {
   };
 
   return (
-    <div className="screen">
+<div className="screen">
       <h2 className="heading">Create account</h2>
 
-      <label className="title">What should we call you?</label>
+      <label className="title" htmlFor="username">
+        What should we call you?
+      </label>
 
       <input
+        id="username"
         type="text"
         className="input-field"
-        placeholder=""
+        placeholder="Enter your username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
 
-      <p className="subtext">This appears on your CouponSpot account.</p>
-
-      <div className="terms-box">
-        <p>
-          By tapping on <strong>‘Create account’</strong>, you agree to the
-          CouponSpot <a href="#">Terms of Use</a>.
-        </p>
-
-        <p>
-          To learn more about how CouponSpot collects and protects your
-          personal data, please see the CouponSpot <a href="#">Privacy Policy</a>.
-        </p>
-      </div>
+      <p className="subtext">This is how your name will appear in Vaulto.</p>
 
       <button className="create-btn" onClick={handleCreate}>
         Create account
       </button>
+
+      <div className="terms-box">
+        <p>
+          To understand how Vaulto collects, uses, and protects your personal
+          information, please review our <a href="#">Privacy Policy</a>.
+        </p>
+        <p>
+          By tapping on <strong>Create account</strong>, you agree to Vaulto&apos;s{" "}
+          <a href="#">Terms of Use</a>.
+        </p>
+      </div>
     </div>
+
   );
 }

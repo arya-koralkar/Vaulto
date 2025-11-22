@@ -49,7 +49,7 @@ export default function PhoneOTP() {
         ))}
       </div>
 
-      <p className="subtext">We sent a 6-digit code to {phone}</p>
+      <p className="sub">We sent a 6-digit code to {phone}.</p>
 
       <button className="next-btn" onClick={handleNext}>
         Next
@@ -57,12 +57,14 @@ export default function PhoneOTP() {
 
       <div className="otp-links">
         <p>
-          Didn’t receive code?
+          Didn’t receive the code?
           <br />
           <a href="#">Resend code</a>
         </p>
 
         <p>
+          Entered wrong phone number?
+          <br />
           <a href="#" onClick={() => navigate("/login/phone")}>
             Edit phone number
           </a>

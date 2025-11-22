@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../styles/Signup.css";
 
 export default function PhoneLogin() {
-  const [phone, setPhone] = useState("+91");
+  const [phone, setPhone] = useState("+91   ");
   const navigate = useNavigate();
 
   const handleNext = () => {
@@ -27,7 +27,7 @@ export default function PhoneLogin() {
         onChange={(e) => setPhone(e.target.value)}
       />
 
-      <p className="subtext">We’ll send you a code to confirm your phone number.</p>
+      <p className="subtext">A verification code will be sent to your phone number.</p>
 
       <button className="next-btn" onClick={handleNext}>
         Next
