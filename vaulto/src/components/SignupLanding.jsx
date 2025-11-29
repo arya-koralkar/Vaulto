@@ -17,7 +17,7 @@ export default function SignupLanding() {
     <>
       <div className="page-container" style={{ textAlign: "center" }}>
         <img src={LogoIcon} alt="logo"/>
-        <p className="tagline">Ready to save some money?</p>
+        <p className="tagline">Ready to save?</p>
 
         <button className="landing-btn" onClick={() => navigate("/email")}>
           <img src={EmailIcon} alt="email" className="icon" />Continue with email
@@ -25,7 +25,7 @@ export default function SignupLanding() {
 
         <button className="landing-btn" onClick={() => navigate("/login/phone")}><img src={PhoneIcon} alt="phone" className="icon" />Continue with phone number</button>
         <button className="landing-btn" onClick={handleGoogleLogin}><img src={GoogleIcon} alt="google" className="icon" />Continue with Google</button>
-         <h3>Sign up to Vaulto</h3>
+         <p className="sign">Sign up to Vaulto</p>
       </div>
     </>
   );

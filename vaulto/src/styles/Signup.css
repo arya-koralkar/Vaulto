@@ -154,3 +154,11 @@ body {
 .terms-box a:hover {
   text-decoration: underline;
 }
+
+.sign {
+  margin-top: 25px;
+  text-align: center;
+  color: #b3b3b3;
+  font-size: 20px;
+  font-weight: 500;
+}

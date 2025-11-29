@@ -57,22 +57,26 @@ export default function BottomNav({ setIsAddMenuOpen }) {
         <span>Home</span>
       </div>
 
-      {/* Scan Button (central action) */}
-      <div
-        className="scan-action-btn"
-        onClick={() => {
-          if (typeof setIsAddMenuOpen === "function") {
-            setIsAddMenuOpen(true);
-          } else {
-            // fallback: navigate to scan page
-            navigate("/scan");
-          }
-        }}
-        role="button"
-        aria-label="Open scan"
-      >
-        <Scan size={22} />
-      </div>
+{/* Scan Button (central action) */}
+<div
+  className="scan-action-btn"
+  onClick={() => {
+    // 1) Ask the global portal to open
+    window.dispatchEvent(new CustomEvent('vaulto:toggleAdd', { detail: 'open' }));
+
+    // 2) Fallback: if portal didn't open (e.g. before hot-reload), navigate to /scan
+    setTimeout(() => {
+      const sheet = document.querySelector('.action-sheet');
+      const isOpen = sheet && sheet.classList.contains('open');
+      if (!isOpen) navigate('/scan');
+    }, 120);
+  }}
+  role="button"
+  aria-label="Open scan"
+>
+  <Scan size={22} />
+</div>
+
 
       {/* Search */}
       <div

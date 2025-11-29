@@ -1,5 +1,7 @@
 // src/App.js
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { createPortal } from 'react-dom';
 import SignupLanding from "./components/SignupLanding";
 import EmailPage from "./components/EmailPage";
 import PasswordPage from "./components/PasswordPage";
@@ -16,25 +18,18 @@ import UploadScanner from "./components/UploadScanner";
 import SearchPage from "./components/SearchPage";
 import AddCoupon from "./components/AddCoupon";
 import BottomNav from "./components/BottomNav";
+import AllCoupons from "./components/AllCoupons";
 import "./App.css";
 
 function AppContent() {
   const location = useLocation();
 
-  // pages where BottomNav should NOT show
   const hideBottomNavOn = [
-    "/",
-    "/email",
-    "/password",
-    "/signup/dob",
-    "/signup/gender",
-    "/signup/username",
-    "/login/phone",
-    "/login/phone-otp"
+    "/", "/email", "/password", "/signup/dob", "/signup/gender",
+    "/signup/username", "/login/phone", "/login/phone-otp"
   ];
 
-  const shouldHideBottomNav = hideBottomNavOn.includes(location.pathname);
-  const shouldShowBottomNav = !shouldHideBottomNav;
+  const shouldShowBottomNav = !hideBottomNavOn.includes(location.pathname);
 
   return (
     <>
@@ -53,22 +48,71 @@ function AppContent() {
         <Route path="/scan/upload" element={<UploadScanner />} />
         <Route path="/search" element={<SearchPage />} />
         <Route path="/add-coupon" element={<AddCoupon />} />
+        <Route path="/all-coupons" element={<AllCoupons />} />
+
       </Routes>
 
-      {/* Render BottomNav for pages where it should be visible */}
       {shouldShowBottomNav && <BottomNav />}
     </>
   );
 }
 
 export default function App() {
+
+  const [isAddMenuOpenGlobal, setIsAddMenuOpenGlobal] = useState(false);
+
+  useEffect(() => {
+    const handler = (e) => {
+      if (e?.detail === "open") setIsAddMenuOpenGlobal(true);
+      else if (e?.detail === "close") setIsAddMenuOpenGlobal(false);
+      else setIsAddMenuOpenGlobal(v => !v);
+    };
+    window.addEventListener("vaulto:toggleAdd", handler);
+    return () => window.removeEventListener("vaulto:toggleAdd", handler);
+  }, []);
+
   return (
     <SignupProvider>
-      <div className="app-container">
-        <Router>
-          <AppContent />
-        </Router>
-      </div>
+
+      {/* ✅ PORTALS MUST BE HERE — OUTSIDE Router */}
+      {createPortal(
+        <div
+          className={`overlay ${isAddMenuOpenGlobal ? "open" : ""}`}
+          onClick={() => setIsAddMenuOpenGlobal(false)}
+        />,
+        document.body
+      )}
+
+      {createPortal(
+        <div className={`action-sheet ${isAddMenuOpenGlobal ? "open" : ""}`}>
+          <div style={{ textAlign:'center', marginBottom:12, color:'white', fontSize:16, fontWeight:700 }}>
+            Add New Item
+          </div>
+
+          <div className="action-option" onClick={() => {
+            setIsAddMenuOpenGlobal(false);
+            window.history.pushState({}, '', '/scan');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}>
+            <span>Scan QR Code</span>
+          </div>
+
+          <div className="action-option" onClick={() => {
+            setIsAddMenuOpenGlobal(false);
+            window.history.pushState({}, '', '/manual-entry');
+            window.dispatchEvent(new PopStateEvent('popstate'));
+          }}>
+            <span>Enter Code Manually</span>
+          </div>
+        </div>,
+        document.body
+      )}
+
+      {/* Router comes AFTER portals */}
+      <Router>
+        <AppContent />
+      </Router>
+
     </SignupProvider>
   );
 }
