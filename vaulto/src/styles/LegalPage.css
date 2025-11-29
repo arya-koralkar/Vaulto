@@ -1,0 +1,85 @@
+.legal-page {
+  padding: 28px 16px;
+  display:flex;
+  justify-content:center;
+  color: var(--text);
+}
+
+.legal-container{
+  max-width: 880px;
+  width:100%;
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.legal-title {
+  font-size: 22px;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.legal-toc {
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.legal-toc a {
+  text-decoration:none;
+  color: var(--muted);
+  font-size:14px;
+  padding:6px 10px;
+  border-radius:8px;
+  transition: background .15s, color .15s;
+}
+
+.legal-toc a:hover {
+  background: rgba(0,0,0,0.04);
+  color: var(--text);
+}
+
+.legal-section {
+  margin-bottom: 18px;
+}
+
+.legal-section h2{
+  font-size:16px;
+  margin: 6px 0 8px;
+  font-weight:700;
+}
+
+.legal-section p{
+  line-height:1.6;
+  color: var(--muted);
+  margin: 6px 0;
+}
+
+.email-link {
+  margin-left:6px;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.legal-actions {
+  margin-top: 18px;
+  display:flex;
+  gap:12px;
+}
+
+.btn {
+  padding:8px 14px;
+  background: var(--accent);
+  color: white;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.legal-footnote {
+  margin-top:14px;
+  color: var(--muted);
+  text-align:right;
+}

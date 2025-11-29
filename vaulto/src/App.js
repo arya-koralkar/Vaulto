@@ -1,6 +1,6 @@
 // src/App.js
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { createPortal } from 'react-dom';
 import SignupLanding from "./components/SignupLanding";
 import EmailPage from "./components/EmailPage";
@@ -19,6 +19,12 @@ import SearchPage from "./components/SearchPage";
 import AddCoupon from "./components/AddCoupon";
 import BottomNav from "./components/BottomNav";
 import AllCoupons from "./components/AllCoupons";
+import ViewProfile from "./components/ViewProfile";
+import NotificationsPage from "./components/NotificationPage";
+import SettingsPage from './components/SettingsPage.jsx';
+import LegalPage from "./components/LegalPage";
+import SupportPage from "./components/SupportPage";
+
 import "./App.css";
 
 function AppContent() {
@@ -49,7 +55,13 @@ function AppContent() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/add-coupon" element={<AddCoupon />} />
         <Route path="/all-coupons" element={<AllCoupons />} />
-
+        <Route path="/profile" element={<ViewProfile />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/settings" element={<SettingsPage />} />
+        <Route path="/legal" element={<LegalPage />} />
+        <Route path="/support" element={<SupportPage />} />
+  
+        {/* add any other routes here */}
       </Routes>
 
       {shouldShowBottomNav && <BottomNav />}
@@ -108,10 +120,10 @@ export default function App() {
         document.body
       )}
 
-      {/* Router comes AFTER portals */}
-      <Router>
+      {/* Router comes AFTER portals and wraps the whole app content */}
+      <BrowserRouter>
         <AppContent />
-      </Router>
+      </BrowserRouter>
 
     </SignupProvider>
   );

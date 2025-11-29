@@ -1,13 +1,15 @@
 // src/components/Dashboard.jsx
 import React, { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
+import { NavLink } from "react-router-dom";
 import "../App.css";
 import "../styles/Dashboard.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   Home, Search, Scan, Plus, QrCode, Bell, User, Camera, Keyboard, LogOut,
   FileText, HelpCircle, Settings, Gift, ArrowRightLeft, Utensils, ShoppingBag, Car,
-  Apple, Smartphone, Plane, SprayCan, Heart, Clapperboard, X
+  Apple, Smartphone, Plane, SprayCan, Heart, Clapperboard, X,
+  Underline
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -145,21 +147,39 @@ const Dashboard = () => {
       <div className="app-container dashboard-page">
         {/* Sidebar */}
         <div className={`profile-sidebar ${isProfileMenuOpen ? "open" : ""}`}>
-          <div className="menu-header" style={{ display: "flex", gap: 12, alignItems: "center" }}>
+          <div className="menu-header" style={{ display: "flex", gap: 14, alignItems: "center" }}>
             <div className="avatar" style={{ width: 48, height: 48 }}>
               <User size={24} color="white" />
             </div>
 
-            <div>
-              <div style={{ fontSize: 18, fontWeight: 700 }}>{displayName}</div>
-              <div style={{ fontSize: 16, opacity: 0.7 }}>View Profile</div>
+           <div>
+  <div className="name">{displayName}</div>
+
+  <div
+    className="view"
+    onClick={() => navigate("/profile")}
+    style={{ cursor: "pointer" }}
+  >
+    View Profile
+  </div>
             </div>
           </div>
 
-          <div className="menu-item"><Bell size={18} /> Notifications</div>
-          <div className="menu-item"><Settings size={18} /> Settings</div>
-          <div className="menu-item"><FileText size={18} /> Legal</div>
-          <div className="menu-item"><HelpCircle size={18} /> Support</div>
+          <NavLink 
+  to="/notifications" 
+  className="menu-item"
+>
+  <Bell size={18} /> Notifications
+</NavLink>
+          <div className="menu-item" onClick={() => navigate("/settings")}>
+        <Settings size={18} />
+        <span>Settings</span>
+      </div>
+          <div className="menu-item" onClick={() => navigate("/legal")}>
+  <span>Legal</span>
+</div>
+
+          <NavLink to="/support" className="menu-item">Support</NavLink>
 
           <div style={{ marginTop: "auto", borderTop: "1px solid rgba(255,255,255,0.04)", paddingTop: 18 }}>
             <div className="menu-item" style={{ color: "#ef4444" }} onClick={handleLogout}><LogOut size={18} /> Log Out</div>

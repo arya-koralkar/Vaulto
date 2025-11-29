@@ -48,8 +48,7 @@ html, body, #root {
 /* header */
 .header{ padding:28px; display:flex; justify-content:space-between; align-items:flex-start; gap:12px; position:relative; z-index:1; }
 .profile-row{ display:flex; gap:12px; align-items:center; cursor:pointer; }
-.avatar{ width:56px; height:56px; border-radius:14px; background: var(--glass); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.04); }
-.brand-name{ font-size:18px; font-weight:800; letter-spacing:1.6px; text-transform:uppercase; color:white; }
+.avatar{ width:56px; height:56px; border-radius:14px; background: var(--glass); display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.04); margin-bottom: 10px;}
 .greetings h1{ font-size:26px; font-weight:800; margin-top:2px; color:white; }
 .greetings p{ font-size:13px; color:white; margin-top:6px; }
 
@@ -201,8 +200,7 @@ html, body, #root {
 .profile-sidebar.open{ transform: translateX(0); }
 .action-sheet{ position:fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index:10100 !important; transform: translateY(110%) !important; transition: transform .28s ease; background: linear-gradient(180deg, rgba(6,18,40,0.98), rgba(4,10,22,0.98)) !important; padding:22px !important; border-top-left-radius:18px !important; border: top right radius 18px !important;; }
 .action-sheet.open{ transform: translateY(0) !important; }
-.menu-item{ margin-top:20px; padding:16px 0; border-bottom:2px solid rgba(255,255,255,0.02); color:white; font-weight:700; cursor:pointer; }
-
+.menu-item{ margin-top:20px; padding:16px 0; border-bottom:2px solid rgba(255,255,255,0.02); color:white; font-weight:700; cursor:pointer; text-decoration: none !important;}
 
 /* avoid subpixel hairlines/artifacts */
 .coupon-card, .coupon-icon-box, .expiring-card, .card-item {
@@ -445,3 +443,21 @@ html, body, #root {
   cursor: pointer !important;
 }
 .scan-action-btn > * { pointer-events: none !important; }
+
+  .view {
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: 16;
+  opacity: 0.7;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  padding-bottom: 30px;
+}
+
+.name{
+  margin-top: 20px;
+  font-weight: 300px !important;
+  font-size: 20px;;
+}
