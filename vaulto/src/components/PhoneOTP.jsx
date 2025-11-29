@@ -29,6 +29,7 @@ export default function PhoneOTP() {
     }
 
     console.log("Phone number verified");
+    localStorage.setItem("vaulto_user", "true");
     navigate("/dashboard");
   };
 

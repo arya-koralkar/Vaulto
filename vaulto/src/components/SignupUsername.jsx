@@ -25,6 +25,8 @@ export default function SignupUsername() {
     });
 
     console.log("Account created successfully!");
+    localStorage.setItem("vaulto_user", "true");
+    localStorage.setItem("vaulto_username", username);
     navigate("/dashboard");
   };
 

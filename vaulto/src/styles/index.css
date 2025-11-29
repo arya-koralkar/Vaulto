@@ -1,0 +1,281 @@
+/* =========================
+   GLOBAL RESET & ROOT
+   ========================= */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html, body, #root {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  --bg-dark: linear-gradient(180deg,#060027 0%, #0b1050 18%, #09206a 45%, #003f9a 75%, #007fe8 100%);
+  --bg-solid-dark: #07070a;
+  --text-light: #eaf6ff;
+  --text-muted: rgba(234,246,255,0.72);
+  --accent: #38bdf8;
+  --card-bg-dark: #0f2a4a;
+}
+
+/* =========================
+   APP CONTAINER + HERO
+   ========================= */
+.app-container {
+  min-height: 100vh;
+  position: relative;
+  overflow: visible;
+  transition: background 220ms ease, color 220ms ease;
+  background: #010116;
+  color: var(--text-light);
+}
+
+/* dashboard hero (single dark hero) */
+.app-container.dashboard-page::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 365px; /* adjust if needed */
+  background: var(--bg-dark);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* =========================
+   LAYOUT / MAIN CONTENT
+   ========================= */
+.main-content {
+  position: relative;
+  z-index: 2;
+  padding: 12px 28px 140px;
+  margin-top: -34px;
+}
+
+/* =========================
+   SCAN PAGE MODE OVERRIDES
+   (scan page should hide/shorten hero)
+   ========================= */
+.app-container.scan-page-mode::before {
+  display: none !important;
+  height: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+.app-container.scan-page-mode .main-content,
+.app-container.scan-page-mode .scan-page {
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+/* Force override specific path (put near EOF if concatenating files) */
+html > body > #root > .app-container.scan-page-mode::before {
+  display: none !important;
+  height: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+html > body > #root > .app-container.scan-page-mode {
+  background: transparent !important;
+  padding-top: 0 !important;
+}
+html > body > #root > .app-container.scan-page-mode .main-content,
+html > body > #root > .app-container.scan-page-mode .scan-page {
+  margin-top: 0 !important;
+  position: relative !important;
+  z-index: 9999 !important;
+}
+
+/* =========================
+   SCAN PAGE STYLES (can be split later)
+   ========================= */
+.scan-page {
+  min-height: 100vh;
+  padding: 70px 20px;
+  text-align: center;
+  color: inherit;
+}
+
+.scan-header h1 {
+  font-size: 36px;
+  margin: 0 0 8px;
+  background: linear-gradient(to right, #7c2bdc, #3a86ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.scan-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
+  margin-top: 20px;
+}
+
+.scan-card {
+  width: 100%;
+  max-width: 760px;
+  padding: 16px 28px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #060243 0%, #151675 35%, #0057D6 70%, #0084FF 100%);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0 auto;
+}
+
+.camera-btn {
+  padding: 12px 28px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #00306a;
+  background: linear-gradient(180deg, #ffffff 0%, #f4f7ff 45%, #e7eeff 100%);
+  border: none;
+  border-radius: 14px;
+  width: 340px;
+  max-width: 80%;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.14);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.camera-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(0,0,0,0.20); }
+.camera-btn:active { transform: translateY(-1px); }
+
+.scan-desc { margin: 0; color: rgba(255,255,255,0.92); font-size: 15px; }
+
+
+/* =========================
+   NAVBAR / COMMON UI
+   ========================= */
+.navbar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 65px;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  background: rgba(1,6,12,0.6);
+  z-index: 120;
+  padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0 -12px 40px rgba(0,0,0,0.45);
+}
+.nav-link {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  color: var(--text-muted);
+  cursor:pointer;
+  font-weight:700;
+}
+.nav-link.active { color: var(--accent); }
+
+/* =========================
+   COUPON / HERO / OTHER UI (DARK ONLY)
+   ========================= */
+
+/* coupon-scroll chips (dark-only styles) */
+.coupon-scroll {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 20px 20px 20px;
+  margin: -72px -12px 18px -12px;
+  align-items: flex-end;
+  position: relative;
+  z-index: 80;
+  justify-content: flex-start;
+}
+
+.coupon-card {
+  min-width: 92px;
+  width: 92px;
+  padding: 10px 6px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  background: transparent;
+  position: relative;
+  z-index: 81;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.coupon-card::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.09);
+  background: rgba(2,6,23,0.00);
+  z-index: -1;
+  box-shadow: 0 10px 30px rgba(2,6,23,0.28);
+}
+
+.coupon-icon-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.02));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 30px rgba(2,6,23,0.30);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color: var(--text-light);
+  transition: transform .12s, background .12s;
+}
+
+.coupon-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+.coupon-card:hover { transform: translateY(-6px); transition: transform .14s ease; }
+.coupon-card.active::before { border-color: rgba(255,255,255,0.16); box-shadow: 0 14px 40px rgba(2,6,23,0.30); }
+.coupon-card.active .coupon-icon-box { background: rgba(255,255,255,0.08); transform: translateY(-6px); border-color: rgba(255,255,255,0.14); }
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+@media (max-width: 900px) {
+  .coupon-card { min-width: 96px; width: 96px; padding: 10px; border-radius: 14px; }
+  .coupon-icon-box { width: 62px; height: 62px; border-radius: 14px; }
+  .coupon-scroll { margin: -48px -8px 22px -8px; padding: 8px 8px 16px 8px; }
+  .main-content { padding: 6px 18px 140px; margin-top: -34px; }
+}
+@media (max-width: 700px) {
+  .coupon-card { min-width: 82px; width: 82px; }
+  .coupon-icon-box { width: 52px; height: 52px; border-radius: 12px; }
+  .app-container.dashboard-page::before { height: 365px; border-bottom-left-radius:22px; border-bottom-right-radius:22px; }
+}
+
+/* hide scrollbars cleanly */
+.no-scroll { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scroll::-webkit-scrollbar { display: none; }
+
+/* final small polish */
+.app-container, .header { overflow: visible !important; }
