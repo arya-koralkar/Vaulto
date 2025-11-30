@@ -2,7 +2,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { createPortal } from "react-dom";
 import { NavLink } from "react-router-dom";
-import "../App.css";
+import "../App.css"; 
 import "../styles/Dashboard.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -238,23 +238,29 @@ const Dashboard = () => {
           </section>
 
           {/* Expiring Soon */}
-          <section>
-            <div className="section-header"><span className="section-title">Expiring Soon</span></div>
-            <div className="expiring-scroll no-scroll">
-              {expiringCoupons.map((c) => (
-                <div key={c.id} className="expiring-card">
-                  <div className="expiring-top">
-                    <div className="brand-icon-box">{c.icon}</div>
-                    <div className="time-badge">{c.time}</div>
-                  </div>
-                  <div>
-                    <div className="offer-text">{c.offer}</div>
-                    <div className="brand-name-text">{c.brand}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
+<section>
+  <div className="section-header"><span className="section-title">Expiring Soon</span></div>
+  <div className="expiring-scroll no-scroll">
+    {expiringCoupons.map((c) => (
+      <div
+        key={c.id}
+        className="expiring-card"
+        onClick={() => navigate("/expiring-soon")}
+        style={{ cursor: "pointer" }}
+      >
+        <div className="expiring-top">
+          <div className="brand-icon-box">{c.icon}</div>
+          <div className="time-badge">{c.time}</div>
+        </div>
+        <div>
+          <div className="offer-text">{c.offer}</div>
+          <div className="brand-name-text">{c.brand}</div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
 
           {/* Cards */}
           <section>

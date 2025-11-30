@@ -444,20 +444,84 @@ html, body, #root {
 }
 .scan-action-btn > * { pointer-events: none !important; }
 
-  .view {
+/* Replace your old rules with these (put in src/styles/Sidebar.css or wherever you keep sidebar styles) */
+
+/* scope to the profile/sidebar so it doesn't affect other pages */
+.profile-sidebar .view,
+.sidebar .view,
+.profile .view,
+.profile-sidebar .view-profile,
+.sidebar .view-profile,
+.profile .view-profile {
+  display: inline-block;
   text-decoration: underline;
   text-decoration-thickness: 1.5px;
   text-underline-offset: 3px;
   cursor: pointer;
-  font-size: 16;
-  opacity: 0.7;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  padding-bottom: 30px;
+  font-size: 16px !important;     /* fixed unit */
+  opacity: 0.78 !important;
+  margin-top: 4px !important;
+  margin-bottom: 40px !important;
+  padding: 0 !important;          /* remove huge padding-bottom that pushed layout */
+  color: rgba(255,255,255,0.9) !important;
+  background: transparent !important;
+  border: none !important;
 }
 
-.name{
-  margin-top: 20px;
-  font-weight: 300px !important;
-  font-size: 20px;;
+/* stronger hover / focus so underline becomes clearer */
+.profile-sidebar .view:hover,
+.sidebar .view:hover,
+.profile .view:hover,
+.profile-sidebar .view:focus,
+.sidebar .view:focus {
+  opacity: 1 !important;
+  outline: none !important;
+  text-decoration-color: rgba(255,255,255,0.95) !important;
+}
+
+/* Replace your old rules with these (put in src/styles/Sidebar.css or wherever you keep sidebar styles) */
+
+/* scope to the profile/sidebar so it doesn't affect other pages */
+.profile-sidebar .view,
+.sidebar .view,
+.profile .view,
+.profile-sidebar .view-profile,
+.sidebar .view-profile,
+.profile .view-profile {
+  display: inline-block;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  font-size: 16px !important;     /* fixed unit */
+  opacity: 0.78 !important;
+  margin-top: 5px !important;
+  margin-bottom: 30px !important;
+  padding: 0 !important;          /* remove huge padding-bottom that pushed layout */
+  color: rgba(255,255,255,0.9) !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+/* name styling — fixed units and valid font-weight */
+.profile-sidebar .name,
+.sidebar .name,
+.profile .name {
+  margin-top: 20px !important;
+  margin-bottom: 6px !important;
+  font-weight: 300 !important;   /* numeric; not px */
+  font-size: 20px !important;    /* px unit */
+  line-height: 1.1 !important;
+  color: #ffffff !important;
+}
+
+.menu-item{
+  margin-top:20px;
+  padding:16px 0;
+  border-bottom:2px solid rgba(255,255,255,0.02);
+  color:white;
+  gap: 10px !important;
+  font-weight:700;
+  cursor:pointer;
+  text-decoration: none !important;
 }

@@ -20,10 +20,9 @@ import AddCoupon from "./components/AddCoupon";
 import BottomNav from "./components/BottomNav";
 import AllCoupons from "./components/AllCoupons";
 import ViewProfile from "./components/ViewProfile";
-import NotificationsPage from "./components/NotificationPage";
-import SettingsPage from './components/SettingsPage.jsx';
 import LegalPage from "./components/LegalPage";
-import SupportPage from "./components/SupportPage";
+import ExpiringSoon from './components/ExpiringSoon.jsx'; 
+import ManualEntry from './components/ManualEntry.jsx';
 
 import "./App.css";
 
@@ -56,11 +55,9 @@ function AppContent() {
         <Route path="/add-coupon" element={<AddCoupon />} />
         <Route path="/all-coupons" element={<AllCoupons />} />
         <Route path="/profile" element={<ViewProfile />} />
-        <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/settings" element={<SettingsPage />} />
         <Route path="/legal" element={<LegalPage />} />
-        <Route path="/support" element={<SupportPage />} />
-  
+        <Route path="/manual-entry" element={<ManualEntry />} />
+        <Route path="/expiring-soon" element={<ExpiringSoon />} />
         {/* add any other routes here */}
       </Routes>
 
